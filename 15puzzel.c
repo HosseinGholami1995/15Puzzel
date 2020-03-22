@@ -18,7 +18,7 @@ void main(){
 	init(x);
 	
 	do {
-	//	system("cls");
+		system("cls");
 		show_table(x);
 		input=getch();
 		//printf("key is %d--\n",input);
@@ -27,16 +27,36 @@ void main(){
 				exit=1;
 				break;
 			case 'w'://up
-				printf("up");
+				if (Y==0)Y=0;
+				else {
+					x[Y][X]=x[Y-1][X];
+					Y=Y-1;
+					x[Y][X]=0;
+				}
 				break;
-			case 'a':
-				printf("left");
+			case 'a'://left
+				if (X==0)X=0;
+				else {
+					x[Y][X]=x[Y][X-1];
+					X=X-1;
+					x[Y][X]=0;
+				}
 				break;
 			case 'd':
-				printf("right");
+				if (X==3)X=3;
+				else {
+					x[Y][X]=x[Y][X+1];
+					X=X+1;
+					x[Y][X]=0;
+				}
 				break;
 			case 's':
-				printf("down");
+				if (Y==3)Y=3;
+				else {
+					x[Y][X]=x[Y+1][X];
+					Y=Y+1;
+					x[Y][X]=0;
+				}
 				break;
 			default:
 				printf("haam???\n");
