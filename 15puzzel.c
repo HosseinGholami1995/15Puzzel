@@ -12,8 +12,14 @@
 
 #include<time.h>//for random
 #include <stdio.h>
+#include <stdlib.h>
+#if defined(_WIN32) || defined(_WIN64)
 #include <conio.h>//for getch
-
+#else
+#include "my_Linux_commands.h"	//for getch & "cls"
+#endif	
+	
+void clrscr(void);
 unsigned char init (unsigned char x[4][4]);
 void show_table(unsigned char x[4][4] );
 unsigned char MoveRule(unsigned char x[4][4],unsigned char input,unsigned char *X,unsigned char *Y);
@@ -39,7 +45,7 @@ void main(){
 	
 	//game started 
 	do {
-		system("cls");
+		clrscr();
 		show_table(x);
 
 		if(win==False){
@@ -60,9 +66,19 @@ void main(){
 
 }
 
+
+void clrscr(void)
+{
+#if defined(_WIN32) || defined(_WIN64)
+	system("cls");
+#else
+	system("clear");
+#endif	
+}
+
 //show welcom page and lvl choos
 unsigned char show_play_again_page(){
-	system("cls");
+	clrscr();
 	printf("  		/\\________________	15 Puzzel Game		________________/\\ \n");
 	printf("		==================================================================\n");
 	printf("		||								||\n");
@@ -143,7 +159,7 @@ void random_move(unsigned char NUM,unsigned char x[4][4],unsigned char *X,unsign
 unsigned char show_welcome_page(){
 	unsigned char lvl;
 	do{		
-		system("cls");
+		clrscr();
 		printf("  		/\\________________	15 Puzzel Game		________________/\\ \n");
 		printf("		==================================================================\n");
 		printf("		||welcom to 15 puzzel Game :) 					||\n");
